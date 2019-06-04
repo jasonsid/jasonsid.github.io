@@ -1,0 +1,164 @@
+
+<!DOCTYPE html>
+<html lang class="loading">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>leetcode 97.交错字符串 - 麟窟-KylinCool</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate">
+    <meta name="keywords" content="jasonsid,lin,kylin,kylincool,席祥麟,"> 
+    <meta name="description" content="给定三个字符串 s1, s2, s3, 验证 s3 是否是由 s1 和 s2 交错组成的。&amp;nbsp;示例 1:12输入: s1 = &amp;quot;aabcc&amp;quot;, s2 = &amp;quot;db,"> 
+    <meta name="author" content="席祥麟"> 
+    <link rel="alternative" href="atom.xml" title="麟窟-KylinCool" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.ico"> 
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <link rel="stylesheet" href="/css/diaspora.css">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+</head>
+</html>
+<body class="loading">
+    <span id="config-title" style="display:none">麟窟-KylinCool</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="icon-home image-icon" href="javascript:;" data-url="https://jasonsid.github.io"></a>
+    <div title="播放/暂停" class="icon-play"></div>
+    <h3 class="subtitle">leetcode 97.交错字符串</h3>
+    <div class="social">
+        <!--<div class="like-icon">-->
+            <!--<a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+        <!--</div>-->
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class="main">
+        <h1 class="title">leetcode 97.交错字符串</h1>
+        <div class="stuff">
+            <span>六月 04, 2019</span>
+            
+  <ul class="post-tags-list"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/leetcode刷题/">leetcode刷题</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <p><img src="https://wx4.sinaimg.cn/large/69a795b3gy1g3p7w1mm91j20rk0k0e4w.jpg" alt><br>给定三个字符串 s1, s2, s3, 验证 s3 是否是由 s1 和 s2 交错组成的。<br>&nbsp;<br>示例 1:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: s1 = &quot;aabcc&quot;, s2 = &quot;dbbca&quot;, s3 = &quot;aadbbcbcac&quot;</span><br><span class="line">输出: true</span><br></pre></td></tr></table></figure></p>
+<p>&nbsp;<br>示例 2:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: s1 = &quot;aabcc&quot;, s2 = &quot;dbbca&quot;, s3 = &quot;aadbbbaccc&quot;</span><br><span class="line">输出: false</span><br></pre></td></tr></table></figure></p>
+<p>&nbsp;</p>
+<p>思路要点：检验s1，s2时，是相同字母情况，要考虑<br>dfs迭代：超时了。字符串问题要dp<br>functools.lru_cache() 可以解决了这个问题。太奇妙了。而且越来越快！缓存查找结果</p>
+<blockquote>
+<p>通过@lru_cache装饰器装饰，我基本上把它变成了一个动态编程解决方案，每个子问题只需要存储一次子问题解决方案，并在下次尝试解决相同问题时从缓存中查找结果。</p>
+</blockquote>
+<p>&nbsp;</p>
+<p>python3解：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">class Solution:</span><br><span class="line"></span><br><span class="line">    import functools</span><br><span class="line">    def isInterleave(self, s1: str, s2: str, s3: str) -&gt; bool:</span><br><span class="line">    </span><br><span class="line">        #dfs递归</span><br><span class="line"> 	return self.dfs(s1,s2,s3,0,0,0)</span><br><span class="line">    @functools.lru_cache(None)</span><br><span class="line">    def dfs(self,s1,s2,s3,s1i,s2i,s3i):</span><br><span class="line">        </span><br><span class="line">        if s3i==len(s3) and s1i==len(s1) and s2i==len(s2):</span><br><span class="line">            return True</span><br><span class="line">        if s3i==len(s3):</span><br><span class="line">            return False</span><br><span class="line"></span><br><span class="line">        if s1i&lt;len(s1) and s2i&lt;len(s2) and s3[s3i]==s1[s1i]==s2[s2i]:</span><br><span class="line">            return self.dfs(s1,s2,s3,s1i+1,s2i,s3i+1) or self.dfs(s1,s2,s3,s1i,s2i+1,s3i+1)  </span><br><span class="line">   </span><br><span class="line">        elif s1i&lt;len(s1) and s3[s3i]==s1[s1i]:</span><br><span class="line">            return self.dfs(s1,s2,s3,s1i+1,s2i,s3i+1)</span><br><span class="line">        elif s2i&lt;len(s2) and s3[s3i]==s2[s2i]:</span><br><span class="line">            return self.dfs(s1,s2,s3,s1i,s2i+1,s3i+1)</span><br><span class="line">        else:</span><br><span class="line">            return False</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">class Solution:</span><br><span class="line">    import functools</span><br><span class="line">    def isInterleave(self, s1: str, s2: str, s3: str) -&gt; bool:</span><br><span class="line">        #dp方法</span><br><span class="line">        if len(s1)+len(s2)!=len(s3):return False</span><br><span class="line">        if len(s3)==0:return True</span><br><span class="line">        dp=[[-1]*(len(s2)+1) for _ in range(len(s1)+1)]</span><br><span class="line">        for i in range(len(s1)+1):</span><br><span class="line">            for j in range(len(s2)+1):</span><br><span class="line">                dp[i][j]= j &gt;0 and s3[i+j-1]==s2[j-1] and dp[i][j-1] or i&gt;0 and s3[i+j-1]==s1[i-1] and dp[i-1][j] or i==0 and j==0  </span><br><span class="line">        </span><br><span class="line">        return dp[len(s1)][len(s2)]</span><br></pre></td></tr></table></figure>
+<p>后记：想调markdown的代码块自动换行，可是尝试网上的办法不行，怀疑是主题配置问题（看到原主题也是不换行的）。也在考虑代码块是否需要换行</p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src>
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        <li title="0" data-url="https://link.hhtjim.com/163/29004010.mp3"></li>
+                    
+                        <li title="1" data-url="http://link.hhtjim.com/qq/001faIUs4M2zna.mp3"></li>
+                    
+                </ul>
+            
+        </div>
+        
+    <div id="gitalk-container" class="comment link" data-ae="false" data-ci data-cs data-r data-o data-a data-d="false">查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/diaspora.js"></script>
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+</html>
