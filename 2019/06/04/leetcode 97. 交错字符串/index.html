@@ -10,7 +10,8 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="google" content="notranslate">
     <meta name="keywords" content="jasonsid,lin,kylin,kylincool,席祥麟,"> 
-    <meta name="description" content="给定三个字符串 s1, s2, s3, 验证 s3 是否是由 s1 和 s2 交错组成的。&amp;nbsp;示例 1:12输入: s1 = &amp;quot;aabcc&amp;quot;, s2 = &amp;quot;db,"> 
+    <meta name="description" content="
+给定三个字符串 s1, s2, s3, 验证 s3 是否是由 s1 和 s2 交错组成的。&amp;nbsp;示例 1:12输入: s1 = &amp;quot;aabcc&amp;quot;, s2 = &amp;quot;d,"> 
     <meta name="author" content="席祥麟"> 
     <link rel="alternative" href="atom.xml" title="麟窟-KylinCool" type="application/atom+xml"> 
     <link rel="icon" href="/img/favicon.ico"> 
@@ -62,7 +63,8 @@
 
         </div>
         <div class="content markdown">
-            <p><img src="https://wx4.sinaimg.cn/large/69a795b3gy1g3p7w1mm91j20rk0k0e4w.jpg" alt><br>给定三个字符串 s1, s2, s3, 验证 s3 是否是由 s1 和 s2 交错组成的。<br>&nbsp;<br>示例 1:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: s1 = &quot;aabcc&quot;, s2 = &quot;dbbca&quot;, s3 = &quot;aadbbcbcac&quot;</span><br><span class="line">输出: true</span><br></pre></td></tr></table></figure></p>
+            <p><img src="https://wx4.sinaimg.cn/large/69a795b3gy1g3p7w1mm91j20rk0k0e4w.jpg" alt="摸鱼"></p>
+<p>给定三个字符串 s1, s2, s3, 验证 s3 是否是由 s1 和 s2 交错组成的。<br>&nbsp;<br>示例 1:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: s1 = &quot;aabcc&quot;, s2 = &quot;dbbca&quot;, s3 = &quot;aadbbcbcac&quot;</span><br><span class="line">输出: true</span><br></pre></td></tr></table></figure></p>
 <p>&nbsp;<br>示例 2:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: s1 = &quot;aabcc&quot;, s2 = &quot;dbbca&quot;, s3 = &quot;aadbbbaccc&quot;</span><br><span class="line">输出: false</span><br></pre></td></tr></table></figure></p>
 <p>&nbsp;</p>
 <p>思路要点：检验s1，s2时，是相同字母情况，要考虑<br>dfs迭代：超时了。字符串问题要dp<br>functools.lru_cache() 可以解决了这个问题。太奇妙了。而且越来越快！缓存查找结果</p>
