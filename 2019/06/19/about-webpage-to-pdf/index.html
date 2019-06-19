@@ -1,0 +1,160 @@
+
+<!DOCTYPE html>
+<html lang class="loading">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>记将网页转变成pdf思路及过程 - 麟窟-KylinCool</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate">
+    <meta name="keywords" content="jasonsid,lin,kylin,kylincool,席祥麟,"> 
+    <meta name="description" content="缘由：读《鸟哥的linux私房菜》pdf版，发现这版的排版并不好（似乎没有css格式，猜测直接读取的h5标签里的内容），而且找到了原文博客，就萌生了怎么把网页转变成pdf版，练练python之类的想,"> 
+    <meta name="author" content="席祥麟"> 
+    <link rel="alternative" href="atom.xml" title="麟窟-KylinCool" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.ico"> 
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <link rel="stylesheet" href="/css/diaspora.css">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+</head>
+</html>
+<body class="loading">
+    <span id="config-title" style="display:none">麟窟-KylinCool</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="icon-home image-icon" href="javascript:;" data-url="https://jasonsid.github.io"></a>
+    <div title="播放/暂停" class="icon-play"></div>
+    <h3 class="subtitle">记将网页转变成pdf思路及过程</h3>
+    <div class="social">
+        <!--<div class="like-icon">-->
+            <!--<a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+        <!--</div>-->
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class="main">
+        <h1 class="title">记将网页转变成pdf思路及过程</h1>
+        <div class="stuff">
+            <span>六月 19, 2019</span>
+            
+  <ul class="post-tags-list"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/pdf/">pdf</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h4 id="缘由："><a href="#缘由：" class="headerlink" title="缘由："></a>缘由：</h4><p>读《鸟哥的linux私房菜》pdf版，发现这版的<strong>排版并不好</strong>（似乎没有css格式，猜测直接读取的h5标签里的内容），而且找到了原文博客，就萌生了怎么把网页转变成pdf版，练练python之类的想法。</p>
+<h4 id="过程："><a href="#过程：" class="headerlink" title="过程："></a>过程：</h4><p>一开始想到的是浏览器会有这样的插件，在chrome商店上搜了一个下网页转pdf，试用了其中一个插件，得到的是<strong>纯图片格式的pdf</strong>，也就是pdf中的字并不能选取（猜测是用了浏览器的打印命令），本身还觉得问题不大，后来发现《私房菜》是有提问部分的，而且附有答案，他的答案的字体颜色是白色的，所以这种方法出现了问题是<strong>得到的pdf是看不了答案的</strong>。ps：之后文字又可以选取了，但字体白色问题还是存在。</p>
+<p>然后是用百度搜的“网页转pdf”，出来的是博客园的，一些爬虫项目，就是基于h5标签的定位内容再进行提取</p>
+<p>最后想到用google（惭愧）搜索webpage to pdf，得到了一堆网站，一站工具（其实用百度搜英文也是这些答案）。以及程序员圣地github和stackoverflow<br><img src="https://wx3.sinaimg.cn/large/69a795b3gy1g45ez2anixj20go0lw41b.jpg" alt="You should learn this book"><br>圣地不愧是圣地，顿时有了学好英文的动力<br>&nbsp;</p>
+<h4 id="wkhtmltopdf-命令行工具"><a href="#wkhtmltopdf-命令行工具" class="headerlink" title="wkhtmltopdf 命令行工具"></a>wkhtmltopdf 命令行工具</h4><p>发现一个命令行工具，比较好用，wkhtmltopdf，（github上开源）。生成的pdf既保留了css格式，而且还能选取文字，也就是<strong>完美解决</strong>之前的两个问题。巧的是我看到一个github上的python开源项目python-pdfkit也是用到了这个工具。<br>&nbsp;<br>wkhtmltopdf说是基于webkit内核渲染的</p>
+<h5 id="浏览器内核"><a href="#浏览器内核" class="headerlink" title="浏览器内核"></a>浏览器内核</h5><p><strong>Trident</strong>:IE -&gt; Edge:Edge -&gt; Webkit/Blink（Chrome系）<br><strong>Gecko</strong>:Firefox<br><strong>Webkit</strong>:Safair,Chrome,国产浏览器<br>&nbsp;</p>
+<h4 id="python-pdfkit-github项目"><a href="#python-pdfkit-github项目" class="headerlink" title="python-pdfkit github项目"></a>python-pdfkit github项目</h4><h5 id="读和实现readme提到的功能"><a href="#读和实现readme提到的功能" class="headerlink" title="读和实现readme提到的功能"></a>读和实现readme提到的功能</h5><p>试用python-pdfkit，发现诸多问题。比如我的网站响应时间过长，所以输出的pdf是读取画面;我的子页面网址有中文，似乎不能应用（我已经注意到并修改但没及时push到github上）<br>&nbsp;<br>说明文档中提到linux系统会有wkhtmltopd不支持qt的而导致其他功能不能用的问题，需要手动更新或是用他提供的脚本来更新。 我复制下了脚本代码，运行时遇到了permission denied，说是没有权限？我明明用的root帐号。网查更改权限文件允许就行了。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod 777 ./.sh(需要修改的文件)</span><br></pre></td></tr></table></figure></p>
+<p>修复成功，可以传入多个网址合并成一个pdf（惊喜的发现pdf有目录！单用wkhtmltopdf是没有的，不过文档里有toc参数 table of content）</p>
+<h5 id="读源码-有单元测试"><a href="#读源码-有单元测试" class="headerlink" title="读源码, 有单元测试"></a>读源码, 有单元测试</h5>
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src>
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        <li title="0" data-url="https://link.hhtjim.com/163/29004010.mp3"></li>
+                    
+                        <li title="1" data-url="http://link.hhtjim.com/qq/001faIUs4M2zna.mp3"></li>
+                    
+                </ul>
+            
+        </div>
+        
+    <div id="gitalk-container" class="comment link" data-ae="false" data-ci data-cs data-r data-o data-a data-d="false">查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/diaspora.js"></script>
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+</html>
